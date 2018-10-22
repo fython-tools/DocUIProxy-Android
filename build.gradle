@@ -1,0 +1,35 @@
+ext {
+	// Application manifest
+	compileSdkVersion = 28
+	targetSdkVersion = 28
+	minSdkVersion = 21
+
+	// Project version
+	versionName = '1.0.0'
+	versionCode = 1
+}
+
+buildscript {
+    ext.kotlinVersion = '1.2.71'
+	ext.androidPluginVersion = '3.2.1'
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$androidPluginVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

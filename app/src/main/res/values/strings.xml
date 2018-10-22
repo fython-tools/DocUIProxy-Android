@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">DocUIProxy for WeChat</string>
+
+    <string name="copy_dialog_message">Processing file…</string>
+
+    <string name="camera_chooser_dialog_title">Choose camera application</string>
+    <string name="remember_this_choice">Remember this choice</string>
+
+</resources>

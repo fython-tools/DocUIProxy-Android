@@ -1,0 +1,19 @@
+<resources>
+
+    <style name="Base.Theme.App" parent="android:Theme.Material.Light">
+        <item name="android:colorPrimary">@color/material_grey_100</item>
+        <item name="android:colorPrimaryDark">@color/material_grey_300</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Theme.App.NoActionBar" parent="Base.Theme.App">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Transparent" parent="android:Theme.Translucent.NoTitleBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+</resources>
