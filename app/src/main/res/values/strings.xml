@@ -7,4 +7,9 @@
     <string name="camera_chooser_dialog_title">Choose camera application</string>
     <string name="remember_this_choice">Remember this choice</string>
 
+    <string name="preferred_camera">Preferred camera</string>
+    <string name="preferred_camera_clear">Clear default value</string>
+
+    <string name="toast_cleared">Cleared.</string>
+
 </resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?android:selectableItemBackground"
+    android:minHeight="?android:listPreferredItemHeight"
+    android:gravity="center_vertical"
+    tools:showIn="@layout/dialog_camera_chooser_content">
+
+    <ImageView
+        android:id="@android:id/icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:importantForAccessibility="no"
+        tools:src="@mipmap/ic_launcher"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@android:id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.Material.Body2"
+            android:textSize="16sp"
+            tools:text="App Title"/>
+
+        <View android:layout_width="wrap_content" android:layout_height="2dp"/>
+
+        <TextView
+            android:id="@android:id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1"
+            android:textColor="?android:textColorSecondary"
+            android:textSize="12sp"
+            tools:text="com.example.bky.camera"/>
+
+    </LinearLayout>
+
+</LinearLayout>

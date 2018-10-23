@@ -1,19 +1,20 @@
 package app.gwo.wechat.docuiproxy;
 
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import java.io.File;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
 import app.gwo.wechat.docuiproxy.util.DumpUtils;
+import app.gwo.wechat.docuiproxy.util.Settings;
 
 import static app.gwo.wechat.docuiproxy.BuildConfig.DEBUG;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Proxy open result to WeChat (include other apps who call camera apps)
@@ -85,13 +86,23 @@ public final class ProxyCameraActivity extends BaseActivity {
     }
 
     private void processIntentForOthers(@NonNull Intent intent) {
-        // TODO Open camera app
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-        File cacheFile = new File(getCacheDir(), "test");
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                FileProvider.getUriForFile(this, Constants.FILE_PROVIDER_AUTHORITY, cacheFile));
-        startActivityForResult(cameraIntent, REQUEST_CODE_CAPTURE);
+        final ComponentName preferredCamera = Settings.getInstance().getPreferredCamera();
+        boolean launched = false;
+        if (preferredCamera != null) {
+            Log.d(TAG, "Launch preferred camera: " + preferredCamera.toString());
+            try {
+                onStartCameraApp(preferredCamera);
+                launched = true;
+            } catch (ActivityNotFoundException e) {
+                e.printStackTrace();
+                Settings.getInstance().setPreferredCamera(null);
+            }
+        }
+        if (!launched) {
+            CameraChooserDialogFragment
+                    .newInstance()
+                    .show(getFragmentManager(), "CameraChooser");
+        }
     }
 
     @Override
@@ -122,7 +133,8 @@ public final class ProxyCameraActivity extends BaseActivity {
                 }
                 case REQUEST_CODE_CAPTURE: {
                     if (data != null) {
-
+                        setResult(RESULT_OK, new Intent());
+                        finish();
                     } else {
                         // TODO Show failed
                         finish();
@@ -144,6 +156,15 @@ public final class ProxyCameraActivity extends BaseActivity {
             Log.e(TAG, "Failed to copy.");
         }
         finish();
+    }
+
+    void onStartCameraApp(@NonNull ComponentName target) {
+        requireNonNull(target);
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.setComponent(target);
+        cameraIntent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, mExpectedOutput);
+        startActivityForResult(cameraIntent, REQUEST_CODE_CAPTURE);
     }
 
 }
