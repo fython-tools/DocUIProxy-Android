@@ -12,4 +12,11 @@
 
     <string name="toast_cleared">Cleared.</string>
 
+    <string name="handled_apps">Apps handled by Document UI</string>
+    <string name="handled_apps_choose_apps">Choose apps</string>
+    <string name="handled_apps_choose_apps_summary">Wechat and %d more applications</string>
+
+    <string name="action_done">Done</string>
+    <string name="packages_selector_search_hint">Search title/package name…</string>
+
 </resources>

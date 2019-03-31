@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory android:title="@string/handled_apps">
+
+        <Preference android:key="handled_apps_choose"
+            android:title="@string/handled_apps_choose_apps"
+            android:summary="@string/handled_apps_choose_apps_summary"/>
+
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/preferred_camera">
 
         <Preference android:key="clear_preferred_camera"

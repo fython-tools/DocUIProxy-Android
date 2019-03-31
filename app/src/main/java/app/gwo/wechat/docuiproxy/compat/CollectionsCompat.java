@@ -63,4 +63,16 @@ public final class CollectionsCompat {
         return filterTo(source, new ArrayList<>(), p);
     }
 
+    @NonNull
+    public static <E> boolean anyMatch(@NonNull Collection<E> source, @NonNull Predicate<E> p) {
+        requireNonNull(source);
+        requireNonNull(p);
+        for (E element : source) {
+            if (p.accept(element)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

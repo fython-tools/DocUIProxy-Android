@@ -31,6 +31,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".PackagesSelectorActivity"
+            android:label="@string/handled_apps_choose_apps"
+            android:exported="false"/>
 
         <activity
             android:name=".ProxyCameraActivity"

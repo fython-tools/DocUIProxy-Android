@@ -28,7 +28,7 @@ public final class ProxyCameraActivity extends BaseActivity {
     public static final int REQUEST_CODE_OPEN = 1;
     public static final int REQUEST_CODE_CAPTURE = 2;
 
-    private boolean isFromWeChat = false;
+    private boolean shouldBeHandled = false;
 
     private Uri mExpectedOutput = null;
 
@@ -55,8 +55,8 @@ public final class ProxyCameraActivity extends BaseActivity {
         getExtrasFromCaptureIntent(intent);
 
         // Start process
-        isFromWeChat = Constants.WECHAT_PACKAGE_NAME.equals(getReferrerPackage());
-        if (isFromWeChat) {
+        shouldBeHandled = Settings.isSourceAppShouldBeHandled(getReferrerPackage());
+        if (shouldBeHandled) {
             Log.d(TAG, "Receive an valid capture intent from WeChat. " +
                     "Now we start process it.");
             processIntentForWeChat(intent);
