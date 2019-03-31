@@ -10,7 +10,7 @@ when WeChat requests a photo.
 
 ## How to use?
 
-1. Download pre-complied package from [GitHub Releases](https://github.com/fython-tools/WeChatDocUIProxy) or compile by yourself.
+1. Download pre-complied package from [GitHub Releases](https://github.com/fython-tools/WeChatDocUIProxy/releases) or compile by yourself.
 2. Long press "Gallery" (相册/相簿) button in the bottom bar of chat pages.
 3. Choose "DocUIProxy for WeChat" (You can also make it as default. 
 Because we allow other applications to use a real camera app when they are calling proxy camera.)
