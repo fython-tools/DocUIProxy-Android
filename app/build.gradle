@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
 
-apply from: rootProject.file('libraries.gradle')
-
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
