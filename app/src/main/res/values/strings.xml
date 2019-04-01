@@ -19,4 +19,7 @@
     <string name="action_done">Done</string>
     <string name="packages_selector_search_hint">Search title/package name…</string>
 
+    <string name="action_camera">Camera</string>
+    <string name="action_documents">Documents</string>
+
 </resources>

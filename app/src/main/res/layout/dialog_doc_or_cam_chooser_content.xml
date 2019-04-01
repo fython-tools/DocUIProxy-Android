@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/action_camera"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:drawableTop="@drawable/ic_photo_camera_64dp"
+        android:drawablePadding="8dp"
+        android:textSize="18sp"
+        android:textColor="?android:textColorPrimary"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:padding="16dp"
+        android:text="@string/action_camera"/>
+
+    <TextView
+        android:id="@+id/action_documents"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:drawableTop="@drawable/ic_folder_open_64dp"
+        android:drawablePadding="8dp"
+        android:textSize="18sp"
+        android:textColor="?android:textColorPrimary"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:padding="16dp"
+        android:text="@string/action_documents"/>
+
+</LinearLayout>

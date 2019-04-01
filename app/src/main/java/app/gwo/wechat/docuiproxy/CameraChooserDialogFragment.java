@@ -64,7 +64,7 @@ public final class CameraChooserDialogFragment extends DialogFragment {
 
     @NonNull
     public Context getThemedContext() {
-        return new ContextThemeWrapper(getActivity(), android.R.style.Theme_Material_Dialog);
+        return new ContextThemeWrapper(getActivity(), android.R.style.Theme_Material_Light_Dialog);
     }
 
     @Override

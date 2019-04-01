@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
+import android.view.MenuItem;
 
 import java.lang.reflect.Field;
 
@@ -51,6 +52,15 @@ public abstract class BaseActivity extends Activity {
     @Nullable
     public String getReferrerPackage() {
         return BaseActivity.getReferrerPackage(this);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (android.R.id.home == item.getItemId()) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
