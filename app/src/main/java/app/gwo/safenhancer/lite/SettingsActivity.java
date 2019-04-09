@@ -96,10 +96,7 @@ public final class SettingsActivity extends BaseActivity {
                 }
                 return false;
             });
-            mSRPermission.setEnabled(
-                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-                            StorageRedirectManager.installed(pm)
-            );
+            mSRPermission.setEnabled(StorageRedirectManager.isSupported(pm));
             mSRPermission.setChecked(
                     Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
                     getActivity().checkSelfPermission(StorageRedirectManager.PERMISSION)

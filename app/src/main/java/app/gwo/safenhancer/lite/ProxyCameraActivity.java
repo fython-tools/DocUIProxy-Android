@@ -96,7 +96,7 @@ public final class ProxyCameraActivity extends BaseActivity {
                     && "file".equals(mExpectedOutput.getScheme())
                     && referrerPackage != null
                     && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                    && StorageRedirectManager.installed(getPackageManager())
+                    && StorageRedirectManager.isSupported(getPackageManager())
                     && checkSelfPermission(StorageRedirectManager.PERMISSION) == PERMISSION_GRANTED
             ) {
                 StorageRedirectManager srm = StorageRedirectManager.create();
@@ -104,12 +104,15 @@ public final class ProxyCameraActivity extends BaseActivity {
                     try {
                         RedirectPackageInfo rpi = srm.getRedirectPackageInfo(
                                 referrerPackage, 0, 0);
-                        if (rpi != null && rpi.enabled && rpi.redirectTarget != null) {
+                        if (rpi != null && rpi.enabled) {
                             Log.d(TAG, "Package " + referrerPackage + " is enabled redirect.");
                             String originalPath = mExpectedOutput.toString();
                             String externalRoot = Environment.getExternalStorageDirectory()
                                     .getAbsolutePath();
                             String redirectTarget = rpi.redirectTarget;
+                            if (redirectTarget == null) {
+                                redirectTarget = srm.getDefaultRedirectTarget();
+                            }
                             if (rpi.redirectTarget.contains("%s")) {
                                 redirectTarget = String.format(redirectTarget, referrerPackage);
                             }

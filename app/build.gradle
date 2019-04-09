@@ -33,5 +33,5 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.0.0"
     implementation 'io.reactivex.rxjava2:rxjava:2.2.7'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'moe.shizuku.redirectstorage:api:1.0.0-alpha1'
+    implementation 'moe.shizuku.redirectstorage:api:1.0.0-alpha2'
 }
