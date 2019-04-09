@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy;
+package app.gwo.safenhancer.lite;
 
 import android.Manifest;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import androidx.annotation.Nullable;
-import app.gwo.wechat.docuiproxy.util.Settings;
+import app.gwo.safenhancer.lite.util.Settings;
 
 public final class SettingsActivity extends BaseActivity {
 

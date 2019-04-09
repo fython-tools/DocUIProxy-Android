@@ -1,9 +1,9 @@
-package app.gwo.wechat.docuiproxy;
+package app.gwo.safenhancer.lite;
 
 import android.app.Application;
 import android.os.StrictMode;
 
-import app.gwo.wechat.docuiproxy.util.Settings;
+import app.gwo.safenhancer.lite.util.Settings;
 
 public final class ProxyApplication extends Application {
 

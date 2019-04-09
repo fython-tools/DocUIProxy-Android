@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package app.gwo.wechat.docuiproxy.util;
+package app.gwo.safenhancer.lite.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -24,7 +24,7 @@ import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import app.gwo.wechat.docuiproxy.compat.Optional;
+import app.gwo.safenhancer.lite.compat.Optional;
 
 /**
  * Copied from Android KTX

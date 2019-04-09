@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy.compat;
+package app.gwo.safenhancer.lite.compat;
 
 import java.util.concurrent.Callable;
 

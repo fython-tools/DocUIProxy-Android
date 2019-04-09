@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy;
+package app.gwo.safenhancer.lite;
 
 public final class Constants {
 

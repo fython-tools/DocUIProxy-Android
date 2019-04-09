@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy.util;
+package app.gwo.safenhancer.lite.util;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.LruCache;
-import app.gwo.wechat.docuiproxy.R;
+import app.gwo.safenhancer.lite.R;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;

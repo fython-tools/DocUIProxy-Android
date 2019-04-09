@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy.model;
+package app.gwo.safenhancer.lite.model;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;

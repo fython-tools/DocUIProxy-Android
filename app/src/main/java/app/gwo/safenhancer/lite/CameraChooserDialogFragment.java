@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy;
+package app.gwo.safenhancer.lite;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -24,11 +24,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
-import app.gwo.wechat.docuiproxy.adapter.CameraChooserAdapter;
-import app.gwo.wechat.docuiproxy.util.IntentUtils;
-import app.gwo.wechat.docuiproxy.util.Settings;
+import app.gwo.safenhancer.lite.adapter.CameraChooserAdapter;
+import app.gwo.safenhancer.lite.util.IntentUtils;
+import app.gwo.safenhancer.lite.util.Settings;
 
-import static app.gwo.wechat.docuiproxy.Constants.EXTRA_DATA;
+import static app.gwo.safenhancer.lite.Constants.EXTRA_DATA;
 import static java.util.Objects.requireNonNull;
 
 public final class CameraChooserDialogFragment extends DialogFragment {

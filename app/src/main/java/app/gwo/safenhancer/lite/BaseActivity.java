@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy;
+package app.gwo.safenhancer.lite;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import app.gwo.wechat.docuiproxy.compat.Optional;
+import app.gwo.safenhancer.lite.compat.Optional;
 
 public abstract class BaseActivity extends Activity {
 

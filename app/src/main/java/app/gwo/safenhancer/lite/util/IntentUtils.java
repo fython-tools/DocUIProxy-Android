@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy.util;
+package app.gwo.safenhancer.lite.util;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.provider.MediaStore;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import app.gwo.wechat.docuiproxy.compat.CollectionsCompat;
+import app.gwo.safenhancer.lite.compat.CollectionsCompat;
 
 import static java.util.Objects.requireNonNull;
 

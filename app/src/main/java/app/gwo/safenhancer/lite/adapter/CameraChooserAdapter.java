@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy.adapter;
+package app.gwo.safenhancer.lite.adapter;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,10 +20,10 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-import app.gwo.wechat.docuiproxy.R;
-import app.gwo.wechat.docuiproxy.compat.Optional;
+import app.gwo.safenhancer.lite.R;
+import app.gwo.safenhancer.lite.compat.Optional;
 
-import static app.gwo.wechat.docuiproxy.Constants.EXTRA_DATA;
+import static app.gwo.safenhancer.lite.Constants.EXTRA_DATA;
 import static java.util.Objects.requireNonNull;
 
 public final class CameraChooserAdapter

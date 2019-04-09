@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy;
+package app.gwo.safenhancer.lite;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -15,17 +15,17 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
-import app.gwo.wechat.docuiproxy.adapter.PackagesSelectorAdapter;
-import app.gwo.wechat.docuiproxy.compat.CollectionsCompat;
-import app.gwo.wechat.docuiproxy.model.CheckableAppInfo;
-import app.gwo.wechat.docuiproxy.util.Settings;
+import app.gwo.safenhancer.lite.adapter.PackagesSelectorAdapter;
+import app.gwo.safenhancer.lite.compat.CollectionsCompat;
+import app.gwo.safenhancer.lite.model.CheckableAppInfo;
+import app.gwo.safenhancer.lite.util.Settings;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-import static app.gwo.wechat.docuiproxy.Constants.WECHAT_PACKAGE_NAME;
+import static app.gwo.safenhancer.lite.Constants.WECHAT_PACKAGE_NAME;
 import static java.util.Objects.requireNonNull;
 
 public final class PackagesSelectorActivity extends BaseActivity {

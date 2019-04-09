@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy;
+package app.gwo.safenhancer.lite;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -17,11 +17,11 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import app.gwo.wechat.docuiproxy.util.DumpUtils;
-import app.gwo.wechat.docuiproxy.util.Settings;
+import app.gwo.safenhancer.lite.util.DumpUtils;
+import app.gwo.safenhancer.lite.util.Settings;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-import static app.gwo.wechat.docuiproxy.BuildConfig.DEBUG;
+import static app.gwo.safenhancer.lite.BuildConfig.DEBUG;
 import static java.util.Objects.requireNonNull;
 
 /**

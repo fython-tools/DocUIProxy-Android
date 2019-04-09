@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy.util;
+package app.gwo.safenhancer.lite.util;
 
 import android.content.Context;
 import android.net.Uri;

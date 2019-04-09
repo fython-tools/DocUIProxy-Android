@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy.adapter;
+package app.gwo.safenhancer.lite.adapter;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,10 +14,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
-import app.gwo.wechat.docuiproxy.R;
-import app.gwo.wechat.docuiproxy.compat.CollectionsCompat;
-import app.gwo.wechat.docuiproxy.model.CheckableAppInfo;
-import app.gwo.wechat.docuiproxy.util.AppIconCacheUtils;
+import app.gwo.safenhancer.lite.R;
+import app.gwo.safenhancer.lite.compat.CollectionsCompat;
+import app.gwo.safenhancer.lite.model.CheckableAppInfo;
+import app.gwo.safenhancer.lite.util.AppIconCacheUtils;
 import io.reactivex.disposables.CompositeDisposable;
 
 import static java.util.Objects.requireNonNull;

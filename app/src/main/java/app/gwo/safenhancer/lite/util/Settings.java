@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy.util;
+package app.gwo.safenhancer.lite.util;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -12,8 +12,8 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import app.gwo.wechat.docuiproxy.Constants;
-import app.gwo.wechat.docuiproxy.compat.CollectionsCompat;
+import app.gwo.safenhancer.lite.Constants;
+import app.gwo.safenhancer.lite.compat.CollectionsCompat;
 
 public final class Settings {
 

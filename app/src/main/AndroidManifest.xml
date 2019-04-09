@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="app.gwo.wechat.docuiproxy">
+    package="app.gwo.safenhancer.lite">
 
     <!-- We do not use this permission actually. But it is required for Android M+ security limitations. -->
     <uses-permission android:name="android.permission.CAMERA"/>

@@ -1,4 +1,4 @@
-package app.gwo.wechat.docuiproxy;
+package app.gwo.safenhancer.lite;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -14,9 +14,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import androidx.annotation.NonNull;
-import app.gwo.wechat.docuiproxy.util.IOUtils;
+import app.gwo.safenhancer.lite.util.IOUtils;
 
-import static app.gwo.wechat.docuiproxy.Constants.EXTRA_PREFIX;
+import static app.gwo.safenhancer.lite.Constants.EXTRA_PREFIX;
 import static java.util.Objects.requireNonNull;
 
 public final class CopyProgressDialogFragment extends DialogFragment
