@@ -24,6 +24,13 @@ If they use their own interface only, it will have no effect even if apps are ch
     <string name="action_done">Done</string>
     <string name="packages_selector_search_hint">Search title/package name…</string>
 
+    <string name="isolated_storage_support_title">Isolated storage support</string>
+    <string name="isolated_storage_support_for_sr">Enable "Storage Redirect" support</string>
+    <string name="isolated_storage_support_for_sr_summary"><![CDATA[
+If apps handled by SAFEnhancer is controlled by Storage Redirect and you cannot choose images
+normally, you need enable this feature.
+    ]]></string>
+
     <string name="action_camera">Camera</string>
     <string name="action_documents">Documents</string>
 

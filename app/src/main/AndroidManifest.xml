@@ -2,12 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="app.gwo.safenhancer.lite">
 
+    <uses-sdk tools:overrideLibrary="moe.shizuku.redirectstorage"/>
+
     <!-- We do not use this permission actually. But it is required for Android M+ security limitations. -->
     <uses-permission android:name="android.permission.CAMERA"/>
 
     <!-- Use to save choose result in the ProxyCameraActivity -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="moe.shizuku.redirectstorage.permission.GET_CONFIGURATION"/>
 
     <application
         android:name=".ProxyApplication"

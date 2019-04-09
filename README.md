@@ -1,7 +1,7 @@
 SAF Enhancer Lite
 ----
 
-Help applications that haven't supported Storage Access Framework (likes WeChat) 
+Help applications that haven't supported Storage Access Framework (like WeChat) 
 to pick media from Android Documents UI
 
 ## What can it do?

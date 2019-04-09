@@ -9,16 +9,21 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import app.gwo.safenhancer.lite.util.DumpUtils;
 import app.gwo.safenhancer.lite.util.Settings;
+import moe.shizuku.redirectstorage.RedirectPackageInfo;
+import moe.shizuku.redirectstorage.StorageRedirectManager;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static app.gwo.safenhancer.lite.BuildConfig.DEBUG;
@@ -86,6 +91,48 @@ public final class ProxyCameraActivity extends BaseActivity {
 
         if (intent.hasExtra(MediaStore.EXTRA_OUTPUT)) {
             mExpectedOutput = intent.getParcelableExtra(MediaStore.EXTRA_OUTPUT);
+            String referrerPackage = getReferrerPackage();
+            if (mExpectedOutput != null
+                    && "file".equals(mExpectedOutput.getScheme())
+                    && referrerPackage != null
+                    && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                    && StorageRedirectManager.installed(getPackageManager())
+                    && checkSelfPermission(StorageRedirectManager.PERMISSION) == PERMISSION_GRANTED
+            ) {
+                StorageRedirectManager srm = StorageRedirectManager.create();
+                if (srm != null) {
+                    try {
+                        RedirectPackageInfo rpi = srm.getRedirectPackageInfo(
+                                referrerPackage, 0, 0);
+                        if (rpi != null && rpi.enabled && rpi.redirectTarget != null) {
+                            Log.d(TAG, "Package " + referrerPackage + " is enabled redirect.");
+                            String originalPath = mExpectedOutput.toString();
+                            String externalRoot = Environment.getExternalStorageDirectory()
+                                    .getAbsolutePath();
+                            String redirectTarget = rpi.redirectTarget;
+                            if (rpi.redirectTarget.contains("%s")) {
+                                redirectTarget = String.format(redirectTarget, referrerPackage);
+                            }
+                            String newExternalRoot = externalRoot;
+                            if (!redirectTarget.isEmpty()) {
+                                newExternalRoot = newExternalRoot + "/" + redirectTarget;
+                            }
+                            mExpectedOutput = Uri.parse(
+                                    originalPath.replace(externalRoot, newExternalRoot)
+                            );
+                            Log.d(TAG, "Original path: " + originalPath + ", external root: " +
+                                    externalRoot + ", redirect target: " + rpi.redirectTarget +
+                                    ", after: " + mExpectedOutput);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        if (DEBUG) {
+                            throw e;
+                        }
+                    }
+                }
+            }
+
             Log.d(TAG, "Expected output path: " + mExpectedOutput);
         }
     }

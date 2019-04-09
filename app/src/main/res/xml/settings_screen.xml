@@ -21,6 +21,14 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/isolated_storage_support_title">
+
+        <SwitchPreference android:key="sr_api_permission"
+            android:title="@string/isolated_storage_support_for_sr"
+            android:summary="@string/isolated_storage_support_for_sr_summary"/>
+
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/about_title">
 
         <Preference android:key="version"

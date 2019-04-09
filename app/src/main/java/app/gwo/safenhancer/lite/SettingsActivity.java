@@ -9,12 +9,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.SwitchPreference;
+import android.util.Log;
 import android.widget.Toast;
 
+import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import app.gwo.safenhancer.lite.util.Settings;
+import moe.shizuku.redirectstorage.StorageRedirectManager;
 
 public final class SettingsActivity extends BaseActivity {
 
@@ -48,13 +53,18 @@ public final class SettingsActivity extends BaseActivity {
         private static final String KEY_HANDLED_APPS_CHOOSE = "handled_apps_choose";
         private static final String KEY_ABOUT_VERSION = "version";
         private static final String KEY_ABOUT_GITHUB = "github";
+        private static final String KEY_SR_API_PERMISSION = "sr_api_permission";
+
+        private static final int REQUEST_CODE_SR_PERMISSION = 1;
 
         private Preference mHandledAppsChoose;
+        private SwitchPreference mSRPermission;
 
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_screen);
+            PackageManager pm = getActivity().getPackageManager();
 
             findPreference(KEY_PREFERRED_CAMERA_CLEAR).setOnPreferenceClickListener(p -> {
                 Settings.getInstance().setPreferredCamera(null);
@@ -72,8 +82,31 @@ public final class SettingsActivity extends BaseActivity {
             });
             updateHandledAppsSummary();
 
+            mSRPermission = (SwitchPreference) findPreference(KEY_SR_API_PERMISSION);
+            mSRPermission.setOnPreferenceChangeListener((pref, newValue) -> {
+                boolean newBool = (boolean) newValue;
+                if (newBool) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(new String[] {
+                                StorageRedirectManager.PERMISSION
+                        }, REQUEST_CODE_SR_PERMISSION);
+                    }
+                } else {
+                    // TODO Jump to settings
+                }
+                return false;
+            });
+            mSRPermission.setEnabled(
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                            StorageRedirectManager.installed(pm)
+            );
+            mSRPermission.setChecked(
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                    getActivity().checkSelfPermission(StorageRedirectManager.PERMISSION)
+                            == PackageManager.PERMISSION_GRANTED
+            );
+
             Preference versionPref = findPreference(KEY_ABOUT_VERSION);
-            PackageManager pm = getActivity().getPackageManager();
             String version = "Unknown";
             try {
                 PackageInfo pi = pm.getPackageInfo(getActivity().getPackageName(), 0);
@@ -111,6 +144,17 @@ public final class SettingsActivity extends BaseActivity {
                     R.string.handled_apps_choose_apps_summary, count));
         }
 
+        @Override
+        public void onRequestPermissionsResult(int requestCode,
+                                               @NonNull String[] permissions,
+                                               @NonNull int[] grantResults) {
+            if (REQUEST_CODE_SR_PERMISSION == requestCode) {
+                if (StorageRedirectManager.PERMISSION.equals(permissions[0]) &&
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mSRPermission.setChecked(true);
+                }
+            }
+        }
     }
 
 }
