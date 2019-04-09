@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <PreferenceCategory android:title="@string/handled_apps">
 
@@ -7,12 +8,28 @@
             android:title="@string/handled_apps_choose_apps"
             android:summary="@string/handled_apps_choose_apps_summary"/>
 
+        <Preference
+            android:title="@string/handled_apps_what_apps_can_use_it"
+            android:summary="@string/handled_apps_what_apps_can_use_it_summary"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/preferred_camera">
 
         <Preference android:key="clear_preferred_camera"
             android:title="@string/preferred_camera_clear"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/about_title">
+
+        <Preference android:key="version"
+            android:title="@string/app_name"
+            tools:summary="1.0 (10)"/>
+
+        <Preference android:key="github"
+            android:title="@string/github_title"
+            android:summary="@string/github_url"/>
 
     </PreferenceCategory>
 

@@ -1,0 +1,35 @@
+<resources>
+
+    <string name="app_name">SAF 強化器 Lite</string>
+
+    <string name="copy_dialog_message">處理檔案中…</string>
+
+    <string name="camera_chooser_dialog_title">選擇相機程式</string>
+    <string name="remember_this_choice">記住這個選擇</string>
+
+    <string name="preferred_camera">相機偏好</string>
+    <string name="preferred_camera_clear">清除默認值</string>
+h
+    <string name="toast_cleared">已清除。</string>
+
+    <string name="handled_apps">由檔案介面處理的應用程式</string>
+    <string name="handled_apps_choose_apps">選擇應用程式</string>
+    <string name="handled_apps_choose_apps_summary">WeChat 與其他 %d 個應用程式</string>
+    <string name="handled_apps_what_apps_can_use_it">什麼應用程式能使用？</string>
+    <string name="handled_apps_what_apps_can_use_it_summary"><![CDATA[
+會調用系統選擇器來拍攝圖象的程式可以被 SAF 強化器處理。
+如果它們只會使用自己的用戶介面，即使清單中程式被選定了也沒有效果。
+    ]]></string>
+
+    <string name="action_done">完成</string>
+    <string name="packages_selector_search_hint">搜尋標題/包名…</string>
+
+    <string name="action_camera">相機</string>
+    <string name="action_documents">檔案</string>
+
+    <string name="about_title">關於</string>
+    <string name="version_format">%1$s (%2$d)</string>
+    <string name="github_title">GitHub 倉庫</string>
+    <string name="github_url" translatable="false">https://github.com/fython-tools/DocUIProxy-Android</string>
+
+</resources>

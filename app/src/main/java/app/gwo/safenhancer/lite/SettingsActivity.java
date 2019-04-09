@@ -2,7 +2,9 @@ package app.gwo.safenhancer.lite;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -44,6 +46,8 @@ public final class SettingsActivity extends BaseActivity {
 
         private static final String KEY_PREFERRED_CAMERA_CLEAR = "clear_preferred_camera";
         private static final String KEY_HANDLED_APPS_CHOOSE = "handled_apps_choose";
+        private static final String KEY_ABOUT_VERSION = "version";
+        private static final String KEY_ABOUT_GITHUB = "github";
 
         private Preference mHandledAppsChoose;
 
@@ -67,6 +71,24 @@ public final class SettingsActivity extends BaseActivity {
                 return true;
             });
             updateHandledAppsSummary();
+
+            Preference versionPref = findPreference(KEY_ABOUT_VERSION);
+            PackageManager pm = getActivity().getPackageManager();
+            String version = "Unknown";
+            try {
+                PackageInfo pi = pm.getPackageInfo(getActivity().getPackageName(), 0);
+                version = getString(R.string.version_format, pi.versionName, pi.versionCode);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            versionPref.setSummary(version);
+
+            findPreference(KEY_ABOUT_GITHUB).setOnPreferenceClickListener(p -> {
+                startActivity(
+                        new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.github_url)))
+                );
+                return true;
+            });
         }
 
         @Override

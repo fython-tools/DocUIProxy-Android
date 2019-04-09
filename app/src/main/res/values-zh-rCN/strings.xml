@@ -1,0 +1,35 @@
+<resources>
+
+    <string name="app_name">SAF 增强器 Lite</string>
+
+    <string name="copy_dialog_message">处理文件中…</string>
+
+    <string name="camera_chooser_dialog_title">选择相机应用</string>
+    <string name="remember_this_choice">记住这个选择</string>
+
+    <string name="preferred_camera">相机偏好</string>
+    <string name="preferred_camera_clear">清除默认值</string>
+
+    <string name="toast_cleared">已清除。</string>
+
+    <string name="handled_apps">由文档界面处理的应用</string>
+    <string name="handled_apps_choose_apps">选择应用</string>
+    <string name="handled_apps_choose_apps_summary">微信和其它 %d 个应用</string>
+    <string name="handled_apps_what_apps_can_use_it">什么应用能够使用？</string>
+    <string name="handled_apps_what_apps_can_use_it_summary"><![CDATA[
+会调用系统选择器来拍摄图片的应用可以被 SAF 增强器处理。
+如果它们只会使用自己的界面，即使列表中应用被选定了也没有效果。
+    ]]></string>
+
+    <string name="action_done">完成</string>
+    <string name="packages_selector_search_hint">搜索标题/包名…</string>
+
+    <string name="action_camera">相机</string>
+    <string name="action_documents">文档</string>
+
+    <string name="about_title">关于</string>
+    <string name="version_format">%1$s (%2$d)</string>
+    <string name="github_title">GitHub 仓库</string>
+    <string name="github_url" translatable="false">https://github.com/fython-tools/DocUIProxy-Android</string>
+
+</resources>
