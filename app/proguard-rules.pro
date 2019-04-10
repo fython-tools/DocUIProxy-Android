@@ -1,2 +1,4 @@
 -dontobfuscate
+-dontwarn android.**
+-dontwarn com.android.**
 -keepattributes SourceFile,LineNumberTable
