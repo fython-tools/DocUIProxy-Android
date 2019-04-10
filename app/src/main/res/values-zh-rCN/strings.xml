@@ -24,6 +24,26 @@
     <string name="action_done">完成</string>
     <string name="packages_selector_search_hint">搜索标题/包名…</string>
 
+    <string name="isolated_storage_support_title">隔离存储支持</string>
+    <string name="isolated_storage_support_for_sr">启用「存储重定向」支持</string>
+    <string name="isolated_storage_support_for_sr_summary"><![CDATA[
+如果由 SAF 增强器处理选图的应用存储被存储重定向所控制而你又无法正常选择图片，你需要启用这个特性。
+    ]]></string>
+    <string name="isolated_storage_support_for_q">启用原生隔离存储支持</string>
+    <string name="isolated_storage_support_for_q_summary_disabled"><![CDATA[
+这个特性只在 Android Q 或更新的版本上启用。
+    ]]></string>
+    <string name="isolated_storage_support_for_q_summary_enabled"><![CDATA[
+如果你的设备正在运行 Android Q 或更新的版本，你可能需要启用这个特性以修复一些应用无法正常接收图片的问题。
+    ]]></string>
+    <string name="isolated_storage_support_for_q_summary_checked"><![CDATA[
+你已经启用了这个特性。当前根文档地址：%s
+    ]]></string>
+    <string name="isolated_storage_support_for_q_dialog_title">启用支持</string>
+    <string name="isolated_storage_support_for_q_dialog_message"><![CDATA[
+现在我们将打开文档界面来选择存储根，请务必选择真正的存储根目录！
+    ]]></string>
+
     <string name="action_camera">相机</string>
     <string name="action_documents">文档</string>
 

@@ -5,6 +5,9 @@
         <item name="android:colorPrimaryDark">@color/material_grey_300</item>
         <item name="android:colorAccent">@color/colorAccent</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:navigationBarDividerColor">#1f000000</item>
+        <item name="android:navigationBarColor">@color/material_grey_100</item>
     </style>
 
 </resources>

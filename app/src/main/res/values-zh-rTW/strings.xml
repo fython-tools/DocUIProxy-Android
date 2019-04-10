@@ -24,6 +24,26 @@ h
     <string name="action_done">完成</string>
     <string name="packages_selector_search_hint">搜尋標題/包名…</string>
 
+    <string name="isolated_storage_support_title">隔離存儲支援</string>
+    <string name="isolated_storage_support_for_sr">啟用「儲存重新導向」支援</string>
+    <string name="isolated_storage_support_for_sr_summary"><![CDATA[
+如果由 SAF 強化器處理選圖的應用程式存儲被儲存重新導向所控制而妳又無法正常選擇圖象，妳需要啟用這個特性。
+    ]]></string>
+    <string name="isolated_storage_support_for_q">啟用原生隔離存儲支援</string>
+    <string name="isolated_storage_support_for_q_summary_disabled"><![CDATA[
+這個特性只在 Android Q 或更新的版本上啟用。
+    ]]></string>
+    <string name="isolated_storage_support_for_q_summary_enabled"><![CDATA[
+如果你的設備正在運行 Android Q 或更新的版本，妳可能需要啟用這個特性以修正一些程式無法正常接收圖象的問題。
+    ]]></string>
+    <string name="isolated_storage_support_for_q_summary_checked"><![CDATA[
+妳已經啟用了這個特性。當前根文檔地址：%s
+    ]]></string>
+    <string name="isolated_storage_support_for_q_dialog_title">啟用支援</string>
+    <string name="isolated_storage_support_for_q_dialog_message"><![CDATA[
+現在我們將打開檔案介面來選定存儲根，請務必選擇真正的存儲根路徑！
+    ]]></string>
+
     <string name="action_camera">相機</string>
     <string name="action_documents">檔案</string>
 
