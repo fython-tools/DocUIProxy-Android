@@ -6,6 +6,8 @@ import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,10 +18,14 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import java.util.Objects;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.documentfile.provider.DocumentFile;
+import app.gwo.safenhancer.lite.compat.Optional;
+import app.gwo.safenhancer.lite.util.BuildUtils;
 import app.gwo.safenhancer.lite.util.DumpUtils;
 import app.gwo.safenhancer.lite.util.Settings;
 import moe.shizuku.redirectstorage.RedirectPackageInfo;
@@ -91,7 +97,10 @@ public final class ProxyCameraActivity extends BaseActivity {
 
         if (intent.hasExtra(MediaStore.EXTRA_OUTPUT)) {
             mExpectedOutput = intent.getParcelableExtra(MediaStore.EXTRA_OUTPUT);
-            String referrerPackage = getReferrerPackage();
+            final String referrerPackage = getReferrerPackage();
+
+            boolean isolatedStoragePathProceed = false;
+
             if (mExpectedOutput != null
                     && "file".equals(mExpectedOutput.getScheme())
                     && referrerPackage != null
@@ -123,6 +132,7 @@ public final class ProxyCameraActivity extends BaseActivity {
                             mExpectedOutput = Uri.parse(
                                     originalPath.replace(externalRoot, newExternalRoot)
                             );
+                            isolatedStoragePathProceed = true;
                             Log.d(TAG, "Original path: " + originalPath + ", external root: " +
                                     externalRoot + ", redirect target: " + rpi.redirectTarget +
                                     ", after: " + mExpectedOutput);
@@ -133,6 +143,67 @@ public final class ProxyCameraActivity extends BaseActivity {
                             throw e;
                         }
                     }
+                }
+            }
+
+            if (mExpectedOutput != null
+                    && "file".equals(mExpectedOutput.getScheme())
+                    && referrerPackage != null
+                    && BuildUtils.isAtLeastQ()
+                    && !isolatedStoragePathProceed) {
+                // TODO Check LEGACY_STORAGE app ops
+                final Uri rootUri = Settings.getInstance().getRootStorageUri().get();
+                if (rootUri == null) {
+                    // TODO Show warning
+                    Log.w(TAG, "Android Q+ cannot work without Storage Access Framework API.");
+                } else {
+                    DocumentFile rootFile = DocumentFile.fromTreeUri(this, rootUri);
+                    DocumentFile sandboxRoot = Optional.ofNullable(rootFile)
+                            .map(file -> file.findFile("Android"))
+                            .filter(DocumentFile::isDirectory)
+                            .map(file -> file.findFile("sandbox"))
+                            .filter(DocumentFile::isDirectory)
+                            .map(file -> {
+                                String sandboxDirName = referrerPackage;
+                                try {
+                                    PackageInfo pi = getPackageManager()
+                                            .getPackageInfo(referrerPackage, 0);
+                                    if (pi.sharedUserId != null) {
+                                        sandboxDirName = "shared-" + pi.sharedUserId;
+                                    }
+                                } catch (PackageManager.NameNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                                return file.findFile(sandboxDirName);
+                            })
+                            .filter(DocumentFile::isDirectory)
+                            .get();
+                    if (sandboxRoot == null) {
+                        sandboxRoot = rootFile;
+                    }
+                    String externalRoot = Environment.getExternalStorageDirectory()
+                            .getAbsolutePath();
+                    String originalPath = mExpectedOutput.toString();
+                    try {
+                        originalPath = URLDecoder.decode(originalPath, "UTF-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    originalPath = originalPath.replace("file://" + externalRoot + "/", "");
+                    String[] pathSegs = Optional.ofNullable(originalPath.split("/"))
+                            .orElse(new String[0]);
+                    Optional<DocumentFile> curFile = Optional.ofNullable(sandboxRoot);
+                    for (int i = 0; i < pathSegs.length; i++) {
+                        String path = pathSegs[i];
+                        curFile = curFile.map(file -> file.findFile(path));
+                        if (i != pathSegs.length - 1) {
+                            curFile = curFile.filter(DocumentFile::isDirectory);
+                            if (!curFile.isPresent()) {
+                                break;
+                            }
+                        }
+                    }
+                    mExpectedOutput = curFile.map(DocumentFile::getUri).orElse(mExpectedOutput);
                 }
             }
 

@@ -3,6 +3,7 @@ package app.gwo.safenhancer.lite.util;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import app.gwo.safenhancer.lite.Constants;
 import app.gwo.safenhancer.lite.compat.CollectionsCompat;
+import app.gwo.safenhancer.lite.compat.Optional;
 
 public final class Settings {
 
@@ -21,6 +23,7 @@ public final class Settings {
 
     public static final String KEY_PREFERRED_CAMERA = "preferred_camera";
     public static final String KEY_HANDLED_APPS = "handled_apps";
+    public static final String KEY_ROOT_STORAGE_URI = "root_storage_uri";
 
     private volatile static Settings sInstance = null;
 
@@ -102,6 +105,19 @@ public final class Settings {
                 }
             }
             mPrefs.edit().putString(KEY_HANDLED_APPS, sb.toString()).apply();
+        }
+    }
+
+    @NonNull
+    public Optional<Uri> getRootStorageUri() {
+        return Optional.ofNullable(mPrefs.getString(KEY_ROOT_STORAGE_URI, null)).map(Uri::parse);
+    }
+
+    public void setRootStorageUri(@Nullable Uri rootUri) {
+        if (rootUri == null) {
+            mPrefs.edit().remove(KEY_ROOT_STORAGE_URI).apply();
+        } else {
+            mPrefs.edit().putString(KEY_ROOT_STORAGE_URI, rootUri.toString()).apply();
         }
     }
 

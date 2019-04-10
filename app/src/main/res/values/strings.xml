@@ -30,6 +30,21 @@ If they use their own interface only, it will have no effect even if apps are ch
 If apps handled by SAFEnhancer is controlled by Storage Redirect and you cannot choose images
 normally, you need enable this feature.
     ]]></string>
+    <string name="isolated_storage_support_for_q">Enable Stock Isolated storage support</string>
+    <string name="isolated_storage_support_for_q_summary_disabled"><![CDATA[
+This feature is enabled for Android Q+ devices only.
+    ]]></string>
+    <string name="isolated_storage_support_for_q_summary_enabled"><![CDATA[
+If your device is running on Android Q+, you may need to enable this feature to fix problems
+that some apps cannot receive pictures normally.
+    ]]></string>
+    <string name="isolated_storage_support_for_q_summary_checked"><![CDATA[
+You have enabled this feature. Current root documents tree uri: %s
+    ]]></string>
+    <string name="isolated_storage_support_for_q_dialog_title">Enable support</string>
+    <string name="isolated_storage_support_for_q_dialog_message"><![CDATA[
+Now we will open Documents UI to pick root storage. Please be sure to choose the real root storage!
+    ]]></string>
 
     <string name="action_camera">Camera</string>
     <string name="action_documents">Documents</string>
@@ -37,6 +52,8 @@ normally, you need enable this feature.
     <string name="about_title">About</string>
     <string name="version_format">%1$s (%2$d)</string>
     <string name="github_title">GitHub repository</string>
-    <string name="github_url" translatable="false">https://github.com/fython-tools/DocUIProxy-Android</string>
+    <string name="github_url" translatable="false"><![CDATA[
+https://github.com/fython-tools/DocUIProxy-Android
+    ]]></string>
 
 </resources>

@@ -27,6 +27,11 @@
             android:title="@string/isolated_storage_support_for_sr"
             android:summary="@string/isolated_storage_support_for_sr_summary"/>
 
+        <SwitchPreference android:key="q_isolated_support"
+            android:title="@string/isolated_storage_support_for_q"
+            android:summaryOff="@string/isolated_storage_support_for_q_summary_enabled"
+            android:summaryOn="@string/isolated_storage_support_for_q_summary_checked"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/about_title">

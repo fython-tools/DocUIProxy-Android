@@ -70,6 +70,10 @@ public final class Optional<T> {
         }
     }
 
+    public boolean isPresent() {
+        return value != null;
+    }
+
     @Nullable
     public T get() {
         return value;

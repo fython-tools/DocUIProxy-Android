@@ -1,6 +1,8 @@
 package app.gwo.safenhancer.lite;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -10,14 +12,15 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.SwitchPreference;
-import android.util.Log;
+import android.provider.DocumentsContract;
 import android.widget.Toast;
 
-import java.util.Arrays;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import app.gwo.safenhancer.lite.compat.Optional;
+import app.gwo.safenhancer.lite.util.BuildUtils;
 import app.gwo.safenhancer.lite.util.Settings;
 import moe.shizuku.redirectstorage.StorageRedirectManager;
 
@@ -54,12 +57,16 @@ public final class SettingsActivity extends BaseActivity {
         private static final String KEY_ABOUT_VERSION = "version";
         private static final String KEY_ABOUT_GITHUB = "github";
         private static final String KEY_SR_API_PERMISSION = "sr_api_permission";
+        private static final String KEY_Q_ISOLATED_SUPPORT = "q_isolated_support";
 
         private static final int REQUEST_CODE_SR_PERMISSION = 1;
+        private static final int REQUEST_CODE_OPEN_ROOT_URI = 2;
 
         private Preference mHandledAppsChoose;
         private SwitchPreference mSRPermission;
+        private SwitchPreference mQIsolatedSupport;
 
+        @SuppressLint("InlinedApi")
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -92,7 +99,16 @@ public final class SettingsActivity extends BaseActivity {
                         }, REQUEST_CODE_SR_PERMISSION);
                     }
                 } else {
-                    // TODO Jump to settings
+                    try {
+                        Intent intent = new Intent(
+                                android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.setData(Uri.fromParts("package",
+                                getActivity().getPackageName(), null));
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 return false;
             });
@@ -102,6 +118,46 @@ public final class SettingsActivity extends BaseActivity {
                     getActivity().checkSelfPermission(StorageRedirectManager.PERMISSION)
                             == PackageManager.PERMISSION_GRANTED
             );
+
+            mQIsolatedSupport = (SwitchPreference) findPreference(KEY_Q_ISOLATED_SUPPORT);
+            mQIsolatedSupport.setEnabled(BuildUtils.isAtLeastQ());
+            if (!BuildUtils.isAtLeastQ()) {
+                mQIsolatedSupport.setSummary(
+                        R.string.isolated_storage_support_for_q_summary_disabled);
+            }
+            mQIsolatedSupport.setOnPreferenceChangeListener((pref, newValue) -> {
+                boolean newBool = (boolean) newValue;
+                if (newBool) {
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle(R.string.isolated_storage_support_for_q_dialog_title)
+                            .setMessage(R.string.isolated_storage_support_for_q_dialog_message)
+                            .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+                                intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI,
+                                        Uri.parse("content://" +
+                                                "com.android.externalstorage.documents" +
+                                                "/tree/primary%3A"));
+                                if (intent.resolveActivity(pm) != null) {
+                                    startActivityForResult(intent, REQUEST_CODE_OPEN_ROOT_URI);
+                                } else {
+                                    // TODO Show error
+                                }
+                            })
+                            .show();
+                    return false;
+                } else {
+                    Settings.getInstance().setRootStorageUri(null);
+                    return true;
+                }
+            });
+            final Optional<Uri> rootStorageUri = Settings.getInstance().getRootStorageUri();
+            mQIsolatedSupport.setChecked(rootStorageUri.isPresent());
+            if (rootStorageUri.isPresent()) {
+                mQIsolatedSupport.setSummaryOn(getString(
+                        R.string.isolated_storage_support_for_q_summary_checked,
+                        rootStorageUri.get().toString()
+                ));
+            }
 
             Preference versionPref = findPreference(KEY_ABOUT_VERSION);
             String version = "Unknown";
@@ -129,6 +185,21 @@ public final class SettingsActivity extends BaseActivity {
                 final List<String> result = PackagesSelectorActivity.getResult(data);
                 Settings.getInstance().setHandledApps(result);
                 updateHandledAppsSummary(result.size());
+            } else if (REQUEST_CODE_OPEN_ROOT_URI == requestCode
+                    && RESULT_OK == resultCode
+                    && data != null) {
+                Uri uri = data.getData();
+                if (uri != null) {
+                    getActivity().getContentResolver().takePersistableUriPermission(uri,
+                            Intent.FLAG_GRANT_READ_URI_PERMISSION |
+                            Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                    Settings.getInstance().setRootStorageUri(uri);
+                    mQIsolatedSupport.setChecked(true);
+                    mQIsolatedSupport.setSummaryOn(getString(
+                            R.string.isolated_storage_support_for_q_summary_checked,
+                            uri.toString()
+                    ));
+                }
             }
         }
 
