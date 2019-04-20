@@ -45,6 +45,8 @@ You have enabled this feature. Current root documents tree uri: %s
     <string name="isolated_storage_support_for_q_dialog_message"><![CDATA[
 Now we will open Documents UI to pick root storage. Please be sure to choose the real root storage!
     ]]></string>
+    <string name="handled_apps_what_apps_can_use_it_wrong_path_dialog_title">Warning</string>
+    <string name="handled_apps_what_apps_can_use_it_wrong_path_dialog_message">The path you picked seems not to be correct. If you confirm it\'s a correct path to root storage, you can ignore it.</string>
 
     <string name="action_camera">Camera</string>
     <string name="action_documents">Documents</string>

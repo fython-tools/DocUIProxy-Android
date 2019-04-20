@@ -155,7 +155,7 @@ public final class SettingsActivity extends BaseActivity {
             if (rootStorageUri.isPresent()) {
                 mQIsolatedSupport.setSummaryOn(getString(
                         R.string.isolated_storage_support_for_q_summary_checked,
-                        rootStorageUri.get().toString()
+                        rootStorageUri.map(Uri::toString).requireValue()
                 ));
             }
 
@@ -199,6 +199,13 @@ public final class SettingsActivity extends BaseActivity {
                             R.string.isolated_storage_support_for_q_summary_checked,
                             uri.toString()
                     ));
+                    if (!"primary:".equals(uri.getLastPathSegment())) {
+                        new AlertDialog.Builder(getActivity())
+                                .setTitle(R.string.handled_apps_what_apps_can_use_it_wrong_path_dialog_title)
+                                .setMessage(R.string.handled_apps_what_apps_can_use_it_wrong_path_dialog_message)
+                                .setPositiveButton(android.R.string.ok, null)
+                                .show();
+                    }
                 }
             }
         }

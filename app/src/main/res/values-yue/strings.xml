@@ -2,49 +2,49 @@
 
     <string name="app_name">SAF 強化器 Lite</string>
 
-    <string name="copy_dialog_message">處理檔案中…</string>
+    <string name="copy_dialog_message">處理緊檔案…</string>
 
-    <string name="camera_chooser_dialog_title">選擇相機程式</string>
-    <string name="remember_this_choice">記住這個選擇</string>
+    <string name="camera_chooser_dialog_title">揀個相機程式</string>
+    <string name="remember_this_choice">記住呢個選擇</string>
 
     <string name="preferred_camera">相機偏好</string>
     <string name="preferred_camera_clear">清除默認值</string>
-h
+
     <string name="toast_cleared">已清除。</string>
 
-    <string name="handled_apps">由檔案介面處理的應用程式</string>
-    <string name="handled_apps_choose_apps">選擇應用程式</string>
-    <string name="handled_apps_choose_apps_summary">WeChat 與其他 %d 個應用程式</string>
-    <string name="handled_apps_what_apps_can_use_it">什麼應用程式能使用？</string>
+    <string name="handled_apps">畀檔案介面處理嘅應用程式</string>
+    <string name="handled_apps_choose_apps">揀應用程式</string>
+    <string name="handled_apps_choose_apps_summary">WeChat 同另外 %d 個應用程式</string>
+    <string name="handled_apps_what_apps_can_use_it">乜嘢程式可以用佢？</string>
     <string name="handled_apps_what_apps_can_use_it_summary"><![CDATA[
-會調用系統選擇器來拍攝圖象的程式可以被 SAF 強化器處理。
-如果它們只會使用自己的用戶介面，即使清單中程式被選定了也沒有效果。
+識得調用系統選擇器來影相嘅程式可以交畀 SAF 強化器處理。
+如果佢地只識用自己嘅用戶介面，即使清單入面揀左呢個程式都冇效果。
     ]]></string>
 
-    <string name="action_done">完成</string>
-    <string name="packages_selector_search_hint">搜尋標題/包名…</string>
+    <string name="action_done">搞掂</string>
+    <string name="packages_selector_search_hint">搵標題/包名…</string>
 
     <string name="isolated_storage_support_title">隔離存儲支援</string>
     <string name="isolated_storage_support_for_sr">啟用「儲存重新導向」支援</string>
     <string name="isolated_storage_support_for_sr_summary"><![CDATA[
-如果由 SAF 強化器處理選圖的應用程式存儲被儲存重新導向所控制而妳又無法正常選擇圖象，妳需要啟用這個特性。
+如果交畀 SAF 強化器處理選圖嘅應用程式存儲被儲存重新導向所控制而妳又冇得正常揀圖，妳就要啟用呢個特性。
     ]]></string>
     <string name="isolated_storage_support_for_q">啟用原生隔離存儲支援</string>
     <string name="isolated_storage_support_for_q_summary_disabled"><![CDATA[
-這個特性只在 Android Q 或更新的版本上啟用。
+呢個特性只喺 Android Q 或更新嘅版本上啟用。
     ]]></string>
     <string name="isolated_storage_support_for_q_summary_enabled"><![CDATA[
-如果你的設備正在運行 Android Q 或更新的版本，妳可能需要啟用這個特性以修正一些程式無法正常接收圖象的問題。
+如果你嘅設備喺度運行緊 Android Q 或更新嘅版本，妳可能需要啟用呢個特性黎修正一啲程式無法正常接收圖象嘅問題。
     ]]></string>
     <string name="isolated_storage_support_for_q_summary_checked"><![CDATA[
-妳已經啟用了這個特性。當前根文檔地址：%s
+妳已經啟用左呢個特性。而家嘅根文檔地址：%s
     ]]></string>
     <string name="isolated_storage_support_for_q_dialog_title">啟用支援</string>
     <string name="isolated_storage_support_for_q_dialog_message"><![CDATA[
-現在我們將打開檔案介面來選定存儲根，請務必選擇真正的存儲根路徑！
+而家我地將打開檔案介面來揀定存儲根，請務必揀啱真正嘅存儲根路徑！
     ]]></string>
     <string name="handled_apps_what_apps_can_use_it_wrong_path_dialog_title">警告</string>
-    <string name="handled_apps_what_apps_can_use_it_wrong_path_dialog_message">妳選擇的路徑似乎不正確！如果妳確認這是個正確的根存儲路徑，妳可以無視這條消息。</string>
+    <string name="handled_apps_what_apps_can_use_it_wrong_path_dialog_message">妳揀嘅位置好似唔啱！如果妳確認呢個係啱嘅根存儲路徑，妳可以無視呢條消息。</string>
 
     <string name="action_camera">相機</string>
     <string name="action_documents">檔案</string>

@@ -43,6 +43,8 @@
     <string name="isolated_storage_support_for_q_dialog_message"><![CDATA[
 现在我们将打开文档界面来选择存储根，请务必选择真正的存储根目录！
     ]]></string>
+    <string name="handled_apps_what_apps_can_use_it_wrong_path_dialog_title">警告</string>
+    <string name="handled_apps_what_apps_can_use_it_wrong_path_dialog_message">你选择的路径似乎不正确！如果你确认这是个正确的根存储路径，你可以无视这条消息。</string>
 
     <string name="action_camera">相机</string>
     <string name="action_documents">文档</string>

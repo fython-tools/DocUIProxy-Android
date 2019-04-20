@@ -80,6 +80,11 @@ public final class Optional<T> {
     }
 
     @NonNull
+    public T requireValue() {
+        return requireNonNull(get());
+    }
+
+    @NonNull
     public T orElse(@NonNull T defaultValue) {
         if (value != null) {
             return value;
