@@ -5,12 +5,12 @@ ext {
 	minSdkVersion = 21
 
 	// Project version
-	versionName = '1.2.0'
-	versionCode = 3
+	versionName = '1.2.1'
+	versionCode = 4
 }
 
 buildscript {
-	ext.androidPluginVersion = '3.3.2'
+	ext.androidPluginVersion = '3.4.0'
 
     repositories {
         google()
