@@ -3,10 +3,6 @@ ext {
 	compileSdkVersion = 28
 	targetSdkVersion = 28
 	minSdkVersion = 21
-
-	// Project version
-	versionName = '1.2.1'
-	versionCode = 4
 }
 
 buildscript {

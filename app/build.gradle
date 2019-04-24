@@ -7,8 +7,8 @@ android {
         applicationId "app.gwo.safenhancer.lite"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        versionCode 4
+        versionName '1.2.1'
 
         resConfigs "en", "zh_CN", "zh_TW"
     }
