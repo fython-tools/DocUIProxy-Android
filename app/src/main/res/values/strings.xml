@@ -24,13 +24,13 @@ If they use their own interface only, it will have no effect even if apps are ch
     <string name="action_done">Done</string>
     <string name="packages_selector_search_hint">Search title/package name…</string>
 
-    <string name="isolated_storage_support_title">Isolated storage support</string>
+    <string name="isolated_storage_support_title">Isolated (Scoped) storage support</string>
     <string name="isolated_storage_support_for_sr">Enable "Storage Redirect" support</string>
     <string name="isolated_storage_support_for_sr_summary"><![CDATA[
 If apps handled by SAFEnhancer is controlled by Storage Redirect and you cannot choose images
 normally, you need enable this feature.
     ]]></string>
-    <string name="isolated_storage_support_for_q">Enable Stock Isolated storage support</string>
+    <string name="isolated_storage_support_for_q">Enable Stock Scoped storage support</string>
     <string name="isolated_storage_support_for_q_summary_disabled"><![CDATA[
 This feature is enabled for Android Q+ devices only.
     ]]></string>
@@ -56,6 +56,18 @@ Now we will open Documents UI to pick root storage. Please be sure to choose the
     <string name="github_title">GitHub repository</string>
     <string name="github_url" translatable="false"><![CDATA[
 https://github.com/fython-tools/DocUIProxy-Android
+    ]]></string>
+
+    <string name="storage_permission_pref_title">Storage permission required</string>
+    <string name="storage_permission_pref_summary"><![CDATA[
+If you see this option, it means you haven\'t grant storage permission to SAF Enhancer Lite.
+For Android pre-Q users, you should click this option to request permission. For Android Q+ users,
+please enable Stock Scoped storage support.
+    ]]></string>
+    <string name="storage_permission_dialog_failed_title">Storage permission required</string>
+    <string name="storage_permission_dialog_failed_message"><![CDATA[
+Permission request was denied. SAF Enhancer Lite may not work properly without storage permission
+before Android Q.
     ]]></string>
 
 </resources>

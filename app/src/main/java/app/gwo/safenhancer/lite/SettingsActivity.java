@@ -19,6 +19,8 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 import app.gwo.safenhancer.lite.compat.Optional;
 import app.gwo.safenhancer.lite.util.BuildUtils;
 import app.gwo.safenhancer.lite.util.Settings;
@@ -32,16 +34,6 @@ public final class SettingsActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[] {
-                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
-                }, 0);
-            }
-        }
-
         if (savedInstanceState == null) {
             getFragmentManager()
                     .beginTransaction()
@@ -52,6 +44,7 @@ public final class SettingsActivity extends BaseActivity {
 
     public static final class SettingsFragment extends PreferenceFragment {
 
+        private static final String KEY_STORAGE_PERMISSION = "storage_permission";
         private static final String KEY_PREFERRED_CAMERA_CLEAR = "clear_preferred_camera";
         private static final String KEY_HANDLED_APPS_CHOOSE = "handled_apps_choose";
         private static final String KEY_ABOUT_VERSION = "version";
@@ -61,7 +54,10 @@ public final class SettingsActivity extends BaseActivity {
 
         private static final int REQUEST_CODE_SR_PERMISSION = 1;
         private static final int REQUEST_CODE_OPEN_ROOT_URI = 2;
+        private static final int REQUEST_CODE_STORAGE_PERMISSION = 3;
 
+        @Nullable
+        private Preference mStoragePermission;
         private Preference mHandledAppsChoose;
         private SwitchPreference mSRPermission;
         private SwitchPreference mQIsolatedSupport;
@@ -72,6 +68,26 @@ public final class SettingsActivity extends BaseActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_screen);
             PackageManager pm = getActivity().getPackageManager();
+
+            mStoragePermission = findPreference(KEY_STORAGE_PERMISSION);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_GRANTED) {
+                    if (mStoragePermission != null) {
+                        getPreferenceScreen().removePreference(mStoragePermission);
+                    }
+                } else {
+                    startRequestStoragePermission();
+                }
+            }
+            if (mStoragePermission != null) {
+                mStoragePermission.setOnPreferenceClickListener(pref -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        startRequestStoragePermission();
+                    }
+                    return true;
+                });
+            }
 
             findPreference(KEY_PREFERRED_CAMERA_CLEAR).setOnPreferenceClickListener(p -> {
                 Settings.getInstance().setPreferredCamera(null);
@@ -94,9 +110,7 @@ public final class SettingsActivity extends BaseActivity {
                 boolean newBool = (boolean) newValue;
                 if (newBool) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(new String[] {
-                                StorageRedirectManager.PERMISSION
-                        }, REQUEST_CODE_SR_PERMISSION);
+                        startRequestSRPermission();
                     }
                 } else {
                     try {
@@ -177,6 +191,21 @@ public final class SettingsActivity extends BaseActivity {
             });
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        private void startRequestStoragePermission() {
+            requestPermissions(new String[] {
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+            }, REQUEST_CODE_STORAGE_PERMISSION);
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        private void startRequestSRPermission() {
+            requestPermissions(new String[] {
+                    StorageRedirectManager.PERMISSION
+            }, REQUEST_CODE_SR_PERMISSION);
+        }
+
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
             if (REQUEST_CODE_PACKAGES_SELECTOR == requestCode
@@ -227,6 +256,20 @@ public final class SettingsActivity extends BaseActivity {
                 if (StorageRedirectManager.PERMISSION.equals(permissions[0]) &&
                         grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mSRPermission.setChecked(true);
+                }
+            } else if (REQUEST_CODE_STORAGE_PERMISSION == requestCode) {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (mStoragePermission != null) {
+                        getPreferenceScreen().removePreference(mStoragePermission);
+                    }
+                } else {
+                    if (!isDetached()) {
+                        new AlertDialog.Builder(getActivity())
+                                .setTitle(R.string.storage_permission_dialog_failed_title)
+                                .setMessage(R.string.storage_permission_dialog_failed_message)
+                                .setPositiveButton(android.R.string.ok, null)
+                                .show();
+                    }
                 }
             }
         }

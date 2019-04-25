@@ -2,6 +2,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <Preference android:key="storage_permission"
+        android:title="@string/storage_permission_pref_title"
+        android:summary="@string/storage_permission_pref_summary"/>
+
     <PreferenceCategory android:title="@string/handled_apps">
 
         <Preference android:key="handled_apps_choose"
