@@ -52,6 +52,16 @@
     <string name="about_title">關於</string>
     <string name="version_format">%1$s (%2$d)</string>
     <string name="github_title">GitHub 倉庫</string>
-    <string name="github_url" translatable="false">https://github.com/fython-tools/DocUIProxy-Android</string>
+
+    <string name="storage_permission_pref_title">需要存儲權限</string>
+    <string name="storage_permission_pref_summary"><![CDATA[
+如果你睇到呢個選項，咁即係話你唔曾畀「SAF 強化器 Lite」存儲權限。
+對於 Android Q 以前版本嘅用家，你要撳呢個選項來請求權限。
+對於 Android Q 或更新版本嘅用家，你要啟用原生隔離存儲支援。
+    ]]></string>
+    <string name="storage_permission_dialog_failed_title">需要存儲權限</string>
+    <string name="storage_permission_dialog_failed_message"><![CDATA[
+權限請求被拒絕左，喺 Android Q 之前嘅版本 SAF 強化器 Lite 可能唔可以喺冇存儲權限嘅情況下正常運作。
+    ]]></string>
 
 </resources>

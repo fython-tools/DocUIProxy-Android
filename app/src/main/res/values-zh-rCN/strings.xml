@@ -52,6 +52,16 @@
     <string name="about_title">关于</string>
     <string name="version_format">%1$s (%2$d)</string>
     <string name="github_title">GitHub 仓库</string>
-    <string name="github_url" translatable="false">https://github.com/fython-tools/DocUIProxy-Android</string>
+
+    <string name="storage_permission_pref_title">需要存储权限</string>
+    <string name="storage_permission_pref_summary"><![CDATA[
+如果你看到这个选项，这意味着你尚未给予「SAF 增强器 Lite」存储权限。
+对于 Android Q 以前版本的用户，你需要点击这个选项来请求权限。
+对于 Android Q 或更新版本的用户，你需要启用原生隔离存储支持。
+    ]]></string>
+    <string name="storage_permission_dialog_failed_title">需要存储权限</string>
+    <string name="storage_permission_dialog_failed_message"><![CDATA[
+权限请求被拒绝了，在 Android Q 之前的版本 SAF 增强器 Lite 可能无法在没有存储权限下正常工作。
+    ]]></string>
 
 </resources>
